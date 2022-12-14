@@ -1,4 +1,5 @@
 const jwt =require('jsonwebtoken')
+const ErrorResponse = require('../utils/errorResponse')
 
 exports.verifyToken = (req, res, next) => {
 	let accessToken = req.cookies.jwt;
@@ -16,7 +17,6 @@ exports.verifyToken = (req, res, next) => {
 		// throws an erro if token has expired or has an invalid signature
 		payload = jwt.verify(accessToken, process.env.JWT_SECRET);
 		req._id = payload._id;
-		req.role = payload.role;
 
 		next();
 	} catch (e) {
@@ -26,3 +26,11 @@ exports.verifyToken = (req, res, next) => {
 		});
 	}
 };
+
+exports.isAdmin = (req, res, next) =>{
+    if (req.user.role === 0){
+        return next (new ErrorResponse('Access denied, you must be an admin', 401));
+    }
+    next();
+
+}

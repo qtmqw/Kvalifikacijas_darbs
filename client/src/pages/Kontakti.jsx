@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     FaEnvelope,
     FaMobile,
@@ -7,6 +7,18 @@ import {
 import { Container } from 'react-bootstrap'
 
 const kont = () => {
+
+    const [name, setName] = useState("");
+    const [tel, setTel] = useState("");
+    const [email, setEmail] = useState("");
+    const [text, setText] = useState("");
+
+    console.log(name)
+    console.log(tel)
+    console.log(email)
+    console.log(text)
+
+
     return (
         <Container fluid className='py-16 max-w-[2000px] mx-auto'>
 
@@ -41,12 +53,13 @@ const kont = () => {
                 <div className='w-full shadow-xl bg-gray-300 relative flex flex-col p-4 md:my-0 my-8 rounded-lg'>
 
                     <h2 className='text-2xl font-bold mb-5'>Jautājiet mums</h2>
-                    <form className="w-full "   >
+                    <form action="https://formsubmit.co/maikls303@gmail.com" method="POST">
                         <div className="flex flex-wrap -mx-3 mb-6">
                             <div className="w-full  px-3 mb-6 md:mb-0">
                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                     <p className='mb-2'>Vārds, Uzvārds</p>
-                                    <input className="appearance-none block w-full bg-white text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="Maikls Ozoliņš"></input>
+                                    <input className="appearance-none block w-full bg-white text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                     type="text" placeholder="Maikls Ozoliņš" onChange={(e) => setName(e.target.value)}/>
                                 </label>
                             </div>
                         </div>
@@ -57,7 +70,8 @@ const kont = () => {
                                     <div className='w-auto mx-auto my-auto max-w-auto flex clex-col'>
                                         <FaMobile className='w-4 h-4 mr-1' /><p className='mb-2'>Telefons</p>
                                     </div>
-                                    <input className="appearance-none block w-full bg-white text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="67382030"></input>
+                                    <input className="appearance-none block w-full bg-white text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                     type="text" placeholder="+371 67382030" onChange={(e) => setTel(e.target.value)}></input>
                                 </label>
                             </div>
 
@@ -66,7 +80,8 @@ const kont = () => {
                                     <div className='w-auto mx-auto my-auto max-w-auto flex clex-col'>
                                         <FaEnvelope className='w-4 h-4 mr-1' /><p className='mb-2'>E-pasts</p>
                                     </div>
-                                    <input required className="appearance-none block w-full bg-white text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="abika@inbox.lv"></input>
+                                    <input required className="appearance-none block w-full bg-white text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                     type="email" name='email' placeholder="abika@inbox.lv" onChange={(e) => setEmail(e.target.value)}></input>
                                 </label>
                                 <p className="text-red-500 text-xs italic font-bold">Lūdzam aizpildīt šo lodziņu</p>
                             </div>
@@ -74,16 +89,18 @@ const kont = () => {
                             <div className="w-full h-[200px] px-3">
                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                                     <p className='mb-2'>Ziņa</p>
-                                    <input required className="appearance-none block w-full h-[100px] bg-white text-gray-700 border border-black rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white" type="text"></input>
+                                    <textarea className="w-full mx-auto bg-white text-gray-700 border rounded form-control block px-3 py-1.5 text-base font-normal transition ease-in-out m-0"
+                                    onChange={(e) => setText(e.target.value)}/>
                                 </label>
                                 <p className="text-red-500 text-xs italic font-bold">Lūdzam aizpildīt šo lodziņu</p>
                             </div>
                         </div>
                     </form>
-                    <button className='bg-black text-white w-[150px] rounded-md font-medium  py-3 absolute bottom-0 right-0 mb-4 mr-4'>Nosūtīt</button>
+                    <button className='bg-black text-white w-[150px] rounded-md font-medium  py-3 absolute bottom-0 right-0 mb-4 mr-4' type="submit">Nosūtīt</button>
                 </div>
             </div>
         </Container>
+
     )
 }
 

@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Produkti = require('../models/Produkti')
 const multer  = require('multer')
-
-
 // parādīt visas preces
 router.get("/", (req, res) => {
     Produkti.find()

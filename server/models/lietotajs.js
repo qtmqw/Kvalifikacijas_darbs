@@ -19,9 +19,8 @@ const userSchema = new mongoose.Schema(
 			lowercase: true,
 		},
 		role: {
-			type: String,
-			required: true,
-			default: "user"
+			type: Number,
+			default: 0
 		},
 		hashedPassword: {
 			type: String,
