@@ -42,45 +42,43 @@ function App() {
 
   return (
 
-      <UserContext.Provider value={{ user, setUser }}>
-        <Navbar />
-        <Routes>
-          <Route path="/">
-            <Route path="/" element={<Sakums />} />
-            <Route path="Par_mums" element={<Par_mums />} />
-            <Route path="Sortiments" element={<Sortiments />} />
-            <Route path="Kontakti" element={<Kontakti />} />
-            <Route path="Produkts" element={<Produkts />} />
-            <Route path="Registreties" element={
-              user ? (
-                <Navigate replace to="/" />
-              ) : (
-                <Registreties />
-              )
-            }
-            />
-            <Route path="Pieslegties" element={
-              user ? (
-                <Navigate replace to="/" />
-              ) : (
-                <Pieslegties />
-              )
-            }
-            />
-            <Route path="admin">
-              <Route path="CRUD" element={<CRUD />} />
-              <Route path="PievienoPreci" element={<PievienoPreci />} />
-              <Route path="EditPreces/update/:id" element={<EditPreces />} />
-            </Route>
-            <Route path="lietotajs">
-              <Route path="Profils" element={<Profils />} />
-            </Route>
-            <Route path="Grozs" element={<Grozs />} />
+    <UserContext.Provider value={{ user, setUser }}>
+      <Navbar />
+      <Routes>
+        <Route path="/">
+          <Route path="/" element={<Sakums />} />
+          <Route path="Par_mums" element={<Par_mums />} />
+          <Route path="Sortiments" element={<Sortiments />} />
+          <Route path="Kontakti" element={<Kontakti />} />
+          <Route path="Produkts" element={<Produkts />} />
+          <Route path="Registreties" element={
+            user ? (
+              <Navigate replace to="/" />
+            ) : (
+              <Registreties />
+            )
+          }
+          />
+          <Route path="Pieslegties" element={
+            user ? (
+              <Navigate replace to="/" />
+            ) : (
+              <Pieslegties />
+            )
+          }
+          />
+          <Route path="admin">
+            <Route path="CRUD" element={<CRUD />} />
+            <Route path="PievienoPreci" element={<PievienoPreci />} />
+            <Route path="EditPreces/update/:id" element={<EditPreces />} />
           </Route>
-        </Routes>
-        <Footer />
-        <ToastContainer />
-      </UserContext.Provider>
+          <Route path="Profils" element={<Profils />} />
+          <Route path="Grozs" element={<Grozs />} />
+        </Route>
+      </Routes>
+      <Footer />
+      <ToastContainer />
+    </UserContext.Provider>
   );
 }
 

@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema(
 			unique: true,
 			lowercase: true,
 		},
+		role: {
+			type: String,
+			required: true,
+			default: "user"
+		},
 		hashedPassword: {
 			type: String,
 			required: true,

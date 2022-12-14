@@ -21,6 +21,7 @@ const CRUD = () => {
     }
 
     const changeOnClick = (e) => {
+        e.preventDefault()
 
         const formData = new FormData()
 

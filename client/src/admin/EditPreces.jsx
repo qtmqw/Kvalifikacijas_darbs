@@ -1,26 +1,33 @@
 import React, { useState } from 'react'
 import { Container } from 'react-bootstrap'
-import NavbarAdmin from './NavbarAdmin'
 import axios from 'axios'
 import { editR } from '../utils/APIRoutes'
-
+import { BsFillCloudUploadFill } from 'react-icons/bs'
 const Edit = () => {
 
-    const [Nosaukums, setNosaukums] = useState('')
-    const [Apraksts, setApraksts] = useState('')
-    const [Krasa, setKrasa] = useState('')
-    const [Cena, setCena] = useState('')
+    const [newNosaukums, setNewNosaukums] = useState('')
+    const [newApraksts, setNewApraksts] = useState('')
+    const [newfileName, setNewFileName] = useState('')
+    const [newKrasa, setNewKrasa] = useState('')
+    const [newCena, setNewCena] = useState('')
 
-    const changeOnClick = e => {
+    const onChangeFile = e => {
+        console.log(e.target.files[0])
+        setNewFileName(e.target.files[0])
+    }
 
-        const produkti = {
-            Nosaukums,
-            Apraksts,
-            Krasa,
-            Cena
-        }
+    const changeOnClick = (e) => {
+        e.preventDefault()
 
-        axios.post(`${editR}`, produkti)
+        const formData = new FormData()
+
+        formData.append("Attels", newfileName);
+        formData.append("Nosaukums", newNosaukums);
+        formData.append("Apraksts", newApraksts);
+        formData.append("Krasa", newKrasa);
+        formData.append("Cena", newCena);
+
+        axios.put(`${editR}`, formData)
             .then(res => console.log(res.data))
             .catch(err => {
                 console.log(err)
@@ -29,11 +36,10 @@ const Edit = () => {
 
     return (
         <>
-            <NavbarAdmin />
             <Container fluid className='max-w-[1000px]'>
 
                 <h1 className='md:text-7xl sm:text-5xl text-3xl font-bold pt-[90px] text-center my-5 '>Labot Preci</h1>
-                <form onSubmit={changeOnClick}>
+                <form onSubmit={changeOnClick} encType='multipart/form-data'>
                     <div className='py-[140px]'>
                         <div className='w-full mb-4 bg-gray-300 p-10 rounded-lg relative '>
                             <form >
@@ -42,7 +48,7 @@ const Edit = () => {
                                         <label className="block uppercase tracking-wide text-gray-700 text-md">
                                             <p className='mb-2 font-bold' htmlFor="Nosaukums">Nosaukums</p>
                                             <input className="w-full mx-auto bg-white text-gray-700 border form-controlk rounded py-3 px-4 mb-3"
-                                                required value={Nosaukums} type="text" placeholder='Nosaukums' onChange={e => setNosaukums(e.target.value)}
+                                                required value={newNosaukums} type="text" placeholder='Nosaukums' onChange={e => setNewNosaukums(e.target.value)}
                                             />
                                         </label>
                                     </div>
@@ -53,8 +59,20 @@ const Edit = () => {
                                         <label className="block uppercase tracking-wide text-gray-700 text-md">
                                             <p className='mb-2 font-bold' htmlFor="Apraksts">Apraksts</p>
                                             <textarea className="w-full mx-auto bg-white text-gray-700 border rounded form-control block px-3 py-1.5 text-base font-normal transition ease-in-out m-0"
-                                                id="exampleFormControlTextarea1" rows="3" required value={Apraksts} type="text" placeholder='Apraksts . . . ' onChange={e => setApraksts(e.target.value)}
+                                                id="exampleFormControlTextarea1" rows="3" required value={newApraksts} type="text" placeholder='Apraksts . . . ' onChange={e => setNewApraksts(e.target.value)}
                                             />
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div className="mb-6">
+                                    <div className="px-3 mb-6 md:mb-0">
+                                        <label htmlFor='file' className="block uppercase tracking-wide text-gray-700 text-md">
+                                            <p className='mb-2 font-bold'>Attels</p>
+                                            <div className='flex'>
+                                                <BsFillCloudUploadFill className='h-10 w-10' /> <span className='ml-5'>Ievietojiet bildi</span>
+                                                <input type='file' filename='Attels' className='form-control-file' onChange={onChangeFile}/>
+                                            </div>
                                         </label>
                                     </div>
                                 </div>
@@ -64,7 +82,7 @@ const Edit = () => {
                                         <label className="block uppercase tracking-wide text-gray-700 text-md">
                                             <p className='mb-2 font-bold' htmlFor="Krasa">Krasa</p>
                                             <input className="w-full mx-auto bg-white text-gray-700 border form-control rounded py-3 px-4 mb-3"
-                                                required value={Krasa} type="text" placeholder='Krasa' onChange={e => setKrasa(e.target.value)}
+                                                required value={newKrasa} type="text" placeholder='Krasa' onChange={e => setNewKrasa(e.target.value)}
                                             />
                                         </label>
                                     </div>
@@ -75,7 +93,7 @@ const Edit = () => {
                                         <label className="block uppercase tracking-wide text-gray-700 text-md">
                                             <p className='mb-2 font-bold' htmlFor="Cena">Cena</p>
                                             <input className="w-full mx-auto bg-white text-gray-700 border form-control rounded py-3 px-4 mb-3"
-                                                required value={Cena} type="number" placeholder='Cena' onChange={e => setCena(e.target.value)}
+                                                required value={newCena} type="number" placeholder='Cena' onChange={e => setNewCena(e.target.value)}
                                             />
                                         </label>
                                     </div>

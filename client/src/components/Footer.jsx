@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <div className='bg-white shadow-lg max-w-full p-4 '>
       <div class="md:flex md:justify-between   ">
-        <a href="/" class="flex self-center text-2xl font-semibold mr-5">Abika</a>
+        <a href="/" class="flex mr-5"><img src="abika.svg" className='max-w-[150px]'/></a>
         <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
           <div>
             <h2 class="mb-3 text-sm font-semibold text-black uppercase ">Izvēlne</h2>

@@ -1,7 +1,4 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Container, Nav, Navbar, Dropdown } from 'react-bootstrap';
 import { Avatar } from "@material-tailwind/react";
 import din from '../assets/din.png'
 import { BsCart2 } from 'react-icons/bs'
@@ -12,7 +9,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from "../UserContext";
 
 const Navbarf = () => {
-  //const { user, setUser } = useContext(UserContext);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const handleLogout = (e) => {
@@ -36,7 +32,7 @@ const Navbarf = () => {
   return (
     <Navbar className='w-full bg-white shadow-lg p-4 navbar' expand="lg">
       <Container className='max-w-full'>
-        <Navbar.Brand href="/"><h1 className='text-3xl text-black font-semibold '>Abika</h1></Navbar.Brand>
+        <Navbar.Brand href="/"><img src="abika.svg" className='max-w-[150px]'/></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="gap-2 p-2 m-auto justify-center">
@@ -54,7 +50,7 @@ const Navbarf = () => {
                 {!user && <Dropdown.Item href="/Registreties">Registreties</Dropdown.Item>}
 
                 {user && <Dropdown.Item>{user && <span>{user}</span>}</Dropdown.Item>}
-                {user && <Dropdown.Item href="/lietotajs/Profils">Profils</Dropdown.Item>}
+                {user && <Dropdown.Item href="/Profils">Profils</Dropdown.Item>}
                 {user && <Dropdown.Divider />}
                 {user && <Dropdown.Item onClick={handleLogout}>Izrakstīties</Dropdown.Item>}
               </Dropdown.Menu>

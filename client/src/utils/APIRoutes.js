@@ -8,4 +8,4 @@ export const searchR = `${host}/prod/search`;
 export const addR = `${host}/prod/add`;
 export const findR = `${host}/prod/:id`;
 export const deleteR = `${host}/prod/`;
-export const editR = `${host}/prod/update/:id`;
+export const editR = `${host}/prod/update/`;

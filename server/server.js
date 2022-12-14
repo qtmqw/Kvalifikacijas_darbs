@@ -41,17 +41,6 @@ app.use("/", userRoutes);
 const produktiRoutes = require('./routes/produkti');
 app.use('/prod', produktiRoutes)
 
-// hosting
-app.use(express.static (path.join(__dirname, '../client/build')));
-app.get("*", function (_, res) {
-res.sendFile(
-path.join(__dirname, "../client/build/index.html"),
-function (err) {
-res.status (500).send(err);
-}
-);
-});
-
 // port
 const port = process.env.PORT || 8080
 
